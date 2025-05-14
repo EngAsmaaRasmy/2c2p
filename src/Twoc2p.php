@@ -50,7 +50,7 @@ class Twoc2p
 
             $jwt = JWT::encode($requestPayload, $this->merchantSecret, 'HS256');
 
-            $response = Http::acceptJson()->post($this->getUrl('paymentToken'), [
+            $response = Http::withoutVerifying()->acceptJson()->post($this->getUrl('paymentToken'), [
                 'payload' => $jwt,
             ]);
 
