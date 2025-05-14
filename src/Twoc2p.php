@@ -128,12 +128,12 @@ class Twoc2p
 
     public function encodeJWT(array $content)
     {
-        return JWT::encode($content, $this->getMerchantSecret());
+        return JWT::encode($content, $this->getMerchantSecret(), 'HS256');
     }
 
     public function decodeJWT(string $content)
     {
-        return JWT::decode($content, $this->getMerchantSecret(), ['HS256']);
+        return JWT::decode($content, $this->getMerchantSecret(), 'HS256');
     }
 
     public function setBaseUrl()
