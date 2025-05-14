@@ -3,6 +3,7 @@
 namespace Laraditz\Twoc2p;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laraditz\Twoc2p\Models\Twoc2pPayment;
@@ -47,7 +48,7 @@ class Twoc2p
 
         try {
 
-            $jwt = JWT::encode($requestPayload, $this->getMerchantSecret());
+            $jwt = JWT::encode($payload, $this->merchantSecret, 'HS256');
 
             $response = Http::acceptJson()->post($this->getUrl('paymentToken'), [
                 'payload' => $jwt,
